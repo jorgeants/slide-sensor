@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Apresentação</title>
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link type="text/css" rel="stylesheet" href="assets/css/styles.css" />
+
+	<link rel="stylesheet" href="assets/revealjs/css/reveal.css">
+	<link rel="stylesheet" href="assets/revealjs/css/theme/night.css" id="theme">
+
+</head>
+
+<body>
+
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>Slide Sensor</h2>
+				<h4>Usando sensores para controlar uma apresentação</h4>
+			</section>
+			<section data-background="assets/img/projeto.jpg">
+				<h1 class="text-shadown">Projeto</h1>
+			</section>
+			<section data-background="assets/img/sensor.jpg">
+				<h1 class="text-shadown">Sensores</h1>
+			</section>
+			<section data-background="assets/img/arduino.jpg">
+				<h1 class="text-shadown">Arduino</h1>
+			</section>
+			<section>
+				<h2 class="text-shadown">Esquema</h2>
+				<img src="assets/img/esquema.png" alt="">
+			</section>
+			<section>
+				<h2 class="text-shadown">Apresentação de Slides</h2>
+				<img src="assets/img/reveal.js.png" alt="">
+			</section>
+			<section data-background="assets/img/oh.gif">
+				<h1 class="text-shadown">Como?</h1>
+			</section>
+			<section data-background="#f0db4f">
+				<img style="border:none;box-shadow:none;" src="assets/img/js.png" height="500" alt="">
+			</section>
+			<section data-background="assets/img/everywhere.gif">
+				<h2 class="text-shadown">JavaScript Everywhere!</h2>
+			</section>
+			<section>
+				<h2 class="text-shadown">Johnny-Five</h2>
+				<img src="assets/img/j5home.png" height="500" alt="">
+			</section>
+			<section>
+				<h2 class="text-shadown">Hello World!</h2>
+				<img src="assets/img/hello.png">
+			</section>
+			<section>
+				<h2 class="text-shadown">Demo</h2>
+			</section>
+			<section>
+				<h2>Código do projeto</h2>
+				<pre><code data-trim class="javascript">
+ledG = new five.Led(10);
+ledR = new five.Led(12);
+
+sensorNext = new five.Motion(2);
+sensorPrev = new five.Motion(4);
+
+sensorNext.on("motionstart", function() {
+	control.nextSlide();
+});
+sensorNext.on("motionend", function() {
+	ledG.off();
+});
+				</code></pre>
+			</section>
+			<section>
+				<h2>Código do projeto</h2>
+				<pre><code data-trim class="javascript">
+var control = {
+    nextSlide: function() {
+    	socket.emit('nextSlide');
+    	ledG.on();
+    },
+    prevSlide: function() {
+    	socket.emit('prevSlide');
+    	ledR.on();
+    }
+};
+				</code></pre>
+			</section>
+			<section>
+				<h2>Código do projeto</h2>
+				<pre><code data-trim class="javascript">
+socket.on('nextSlide', function(data){
+	Reveal.right();
+});
+socket.on('prevSlide', function(data){
+	Reveal.left();
+});
+				</code></pre>
+			</section>
+			<section data-background="assets/img/fim.jpg">
+				<h2>Obrigado</h2>
+			</section>
+		</div>
+	</div>
+
+
+	<!-- Including the JS libraries that we use -->
+	<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+	<!-- Reveal.js is for presentations -->
+	<script src="assets/revealjs/lib/js/head.min.js"></script>
+	<script src="assets/revealjs/js/reveal.js"></script>
+
+	<!-- Socket.io library -->
+	<script src="/socket.io/socket.io.js"></script>
+
+	<!-- Main JavaScript file -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+</html>

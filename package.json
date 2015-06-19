@@ -1,0 +1,24 @@
+{
+  "name": "SlideSensor",
+  "version": "0.0.1",
+  "description": "Using your smartphone or sensor movement with arduino as a remote control for  presentations with reveal.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "supervisor app.js"
+  },
+  "keywords": [
+    "remote",
+    "control",
+    "mobile",
+    "sensor",
+    "arduino"
+  ],
+  "author": "Jorge",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.11.0",
+    "socket.io": "^1.3.2",
+    "johnny-five": "^0.8.76"
+  }
+}
